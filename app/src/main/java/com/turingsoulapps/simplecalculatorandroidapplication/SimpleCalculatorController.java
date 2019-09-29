@@ -2,6 +2,7 @@ package com.turingsoulapps.simplecalculatorandroidapplication;
 
 public class SimpleCalculatorController {
     private static String operator = "";
+    private static boolean isSqrt = false;
     private static int dotCount=0;
 
     public static String setOperation(String view)
@@ -9,11 +10,22 @@ public class SimpleCalculatorController {
         if(view == ".")
         {
             dotCount++;
-            if(dotCount > 1) return "MATH ERROR";
+            if(dotCount > 1) return "NaN";
         }
 
         if(isOperator(view) == true)
         {
+            if(view == "√" && isSqrt == false){
+                isSqrt = true;
+                operator = "√";
+                return "√";
+            }
+
+            if(isSqrt == true) {
+                SimpleCalculatorModel.SetOperator(view);
+                return "√"+view;
+            }
+
             operator = view;
             return SimpleCalculatorModel.GetFirstNumber()+operator+SimpleCalculatorModel.GetSecondNumber();
         }
@@ -22,6 +34,7 @@ public class SimpleCalculatorController {
         {
             operator = "";
             dotCount = 0;
+            isSqrt=false;
             SimpleCalculatorModel.ClearAll();
             return "";
         }
@@ -40,15 +53,15 @@ public class SimpleCalculatorController {
 
         else if(view == "=")
         {
-            if(SimpleCalculatorModel.GetSecondNumber() == "") return "MATH ERROR";
+            if(SimpleCalculatorModel.GetSecondNumber() == "") return "NaN";
             if(operator == "+") return SimpleCalculatorModel.Add();
             if(operator == "-") return SimpleCalculatorModel.Subtract();
             if(operator == "*") return SimpleCalculatorModel.Multiply();
             if(operator == "/") return SimpleCalculatorModel.Division();
             if(operator == "^") return SimpleCalculatorModel.Power();
             if(operator == "%") return SimpleCalculatorModel.Mod();
-            if(operator == "Sqrt of ") return SimpleCalculatorModel.Sqrt();
-            else return "MATH ERROR";
+            if(operator == "√"){isSqrt = false; return SimpleCalculatorModel.Sqrt();}
+            else return "NaN";
         }
 
         else
@@ -63,7 +76,12 @@ public class SimpleCalculatorController {
                 return SimpleCalculatorModel.GetFirstNumber()+operator+SimpleCalculatorModel.GetSecondNumber();
 
             }
-            else if(operator == "") SimpleCalculatorModel.SetFirstNumber(view);
+            else if(operator == "" && isSqrt == false) SimpleCalculatorModel.SetFirstNumber(view);
+            else if(isSqrt == true)
+            {
+                SimpleCalculatorModel.SetSecondNumber(view);
+                return "√"+SimpleCalculatorModel.GetOperator()+view;
+            }
             else SimpleCalculatorModel.SetSecondNumber(view);
             return SimpleCalculatorModel.GetFirstNumber()+operator+SimpleCalculatorModel.GetSecondNumber();
         }
@@ -71,7 +89,7 @@ public class SimpleCalculatorController {
 
     private static boolean isOperator(String op)
     {
-        if(op == "+" || op == "-" || op == "*" || op == "/" || op == "^" || op == "%" || op == "Sqrt of ") return true;
+        if(op == "+" || op == "-" || op == "*" || op == "/" || op == "^" || op == "%" || op == "√") return true;
         return false;
     }
 }

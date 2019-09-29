@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String output = SimpleCalculatorController.setOperation(".");
-                if(output == "MATH ERROR")
+                if(output == "NaN")
                 {
                     inputDisplay.setText("");
                     resultDisplay.setText(output);
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSqrt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inputDisplay.setText(SimpleCalculatorController.setOperation("Sqrt of "));
+                inputDisplay.setText(SimpleCalculatorController.setOperation("√"));
             }
         });
 

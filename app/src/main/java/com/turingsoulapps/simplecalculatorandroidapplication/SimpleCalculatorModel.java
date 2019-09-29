@@ -4,10 +4,21 @@ public class SimpleCalculatorModel {
 
     private static String firstNumber = "";
     private static String secondNumber = "";
+    private static String operator = "";
 
     public static void SetFirstNumber(String _firstNumber)
     {
         firstNumber += _firstNumber;
+    }
+
+    public static void SetOperator(String _operator)
+    {
+        operator = _operator;
+    }
+
+    public static String GetOperator()
+    {
+        return operator;
     }
 
     public static String GetFirstNumber()
@@ -75,7 +86,7 @@ public class SimpleCalculatorModel {
         double num1 = Double.parseDouble(firstNumber);
         double num2 = Double.parseDouble(secondNumber);
 
-        if(num2 == 0.0) return "MATH ERROR";
+        if(num2 == 0.0) return "NaN";
 
         double ans = num1/num2;
 
@@ -122,7 +133,7 @@ public class SimpleCalculatorModel {
     {
         double num1 = Double.parseDouble(secondNumber);
 
-        if(num1 < 0) return "MATH ERROR";
+        if(operator == "-") return "NaN";
 
         double ans = Math.sqrt(num1);
 
@@ -138,6 +149,7 @@ public class SimpleCalculatorModel {
     {
         firstNumber = "";
         secondNumber = "";
+        operator = "";
     }
 
     public static void DeleteFirstNumber()
