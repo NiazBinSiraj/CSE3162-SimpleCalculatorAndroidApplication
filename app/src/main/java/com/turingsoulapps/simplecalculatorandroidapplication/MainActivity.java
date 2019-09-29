@@ -184,7 +184,13 @@ public class MainActivity extends AppCompatActivity {
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inputDisplay.setText(SimpleCalculatorController.setOperation("."));
+                String output = SimpleCalculatorController.setOperation(".");
+                if(output == "MATH ERROR")
+                {
+                    inputDisplay.setText("");
+                    resultDisplay.setText(output);
+                }
+                else inputDisplay.setText(output);
             }
         });
 

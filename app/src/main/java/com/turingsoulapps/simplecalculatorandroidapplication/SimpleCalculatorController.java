@@ -2,9 +2,16 @@ package com.turingsoulapps.simplecalculatorandroidapplication;
 
 public class SimpleCalculatorController {
     private static String operator = "";
+    private static int dotCount=0;
 
     public static String setOperation(String view)
     {
+        if(view == ".")
+        {
+            dotCount++;
+            if(dotCount > 1) return "MATH ERROR";
+        }
+
         if(isOperator(view) == true)
         {
             operator = view;
@@ -14,6 +21,7 @@ public class SimpleCalculatorController {
         else if(view == "clear")
         {
             operator = "";
+            dotCount = 0;
             SimpleCalculatorModel.ClearAll();
             return "";
         }
@@ -32,6 +40,7 @@ public class SimpleCalculatorController {
 
         else if(view == "=")
         {
+            if(SimpleCalculatorModel.GetSecondNumber() == "") return "MATH ERROR";
             if(operator == "+") return SimpleCalculatorModel.Add();
             if(operator == "-") return SimpleCalculatorModel.Subtract();
             if(operator == "*") return SimpleCalculatorModel.Multiply();

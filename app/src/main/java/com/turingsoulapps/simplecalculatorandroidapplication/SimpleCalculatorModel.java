@@ -32,7 +32,10 @@ public class SimpleCalculatorModel {
 
         double ans = num1+num2;
 
-        String result = String.format("%.1f",ans);
+        String result;
+        if(ans - (int)ans == 0) result = String.format("%.1f",ans);
+
+        else result = String.format("%.3f",ans);
 
         return result;
     }
@@ -44,7 +47,10 @@ public class SimpleCalculatorModel {
 
         double ans = num1-num2;
 
-        String result = String.format("%.1f",ans);
+        String result;
+        if(ans - (int)ans == 0) result = String.format("%.1f",ans);
+
+        else result = String.format("%.3f",ans);
 
         return result;
     }
@@ -56,7 +62,10 @@ public class SimpleCalculatorModel {
 
         double ans = num1*num2;
 
-        String result = String.format("%.1f",ans);
+        String result;
+        if(ans - (int)ans == 0) result = String.format("%.1f",ans);
+
+        else result = String.format("%.3f",ans);
 
         return result;
     }
@@ -70,7 +79,10 @@ public class SimpleCalculatorModel {
 
         double ans = num1/num2;
 
-        String result = String.format("%.1f",ans);
+        String result;
+        if(ans - (int)ans == 0) result = String.format("%.1f",ans);
+
+        else result = String.format("%.3f",ans);
 
         return result;
     }
@@ -83,7 +95,10 @@ public class SimpleCalculatorModel {
 
         double ans = num1%num2;
 
-        String result = String.format("%.1f",ans);
+        String result;
+        if(ans - (int)ans == 0) result = String.format("%.1f",ans);
+
+        else result = String.format("%.3f",ans);
 
         return result;
     }
@@ -95,7 +110,10 @@ public class SimpleCalculatorModel {
 
         double ans = Math.pow(num1,num2);
 
-        String result = String.format("%.1f",ans);
+        String result;
+        if(ans - (int)ans == 0) result = String.format("%.1f",ans);
+
+        else result = String.format("%.3f",ans);
 
         return result;
     }
@@ -108,7 +126,10 @@ public class SimpleCalculatorModel {
 
         double ans = Math.sqrt(num1);
 
-        String result = String.format("%.1f",ans);
+        String result;
+        if(ans - (int)ans == 0) result = String.format("%.1f",ans);
+
+        else result = String.format("%.3f",ans);
 
         return result;
     }
